@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AER_APP</string>
+    <string name="validate_empty_fields"> No se permiten campos vacios</string>
+    <string name="validate_password_match"> Las contraseñas no coinciden</string>
 </resources>

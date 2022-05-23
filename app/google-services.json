@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "855711241567",
+    "project_id": "aerapp-e0ddb",
+    "storage_bucket": "aerapp-e0ddb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:855711241567:android:10d513e34d9185505052ea",
+        "android_client_info": {
+          "package_name": "com.example.aer_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "855711241567-51rq7hon35hk687cquj2pivp5gc39g6j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkuuOrL4781_mj8SD7B897bWVWt9-0JvY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "855711241567-51rq7hon35hk687cquj2pivp5gc39g6j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
