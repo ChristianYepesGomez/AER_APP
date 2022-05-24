@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="Home" />
+
+    <item
+        android:id="@+id/nav_usuarios"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="Usuarios" />
+
+    <item
+        android:id="@+id/nav_problemas"
+        android:icon="@drawable/ic_baseline_checklist_24"
+        android:title="Problemas`" />
+
+    <item
+        android:id="@+id/nav_instituciones"
+        android:icon="@drawable/ic_baseline_school_24"
+        android:title="Instituciones" />
+
+
+    <item
+        android:id="@+id/nav_settings"
+        android:icon="@drawable/ic_baseline_settings_24"
+        android:title="Settings" />
+
+    <item
+        android:id="@+id/nav_share"
+        android:icon="@drawable/ic_baseline_share_24"
+        android:title="Share" />
+
+    <item
+        android:id="@+id/nav_logout"
+        android:icon="@drawable/ic_baseline_login_24"
+        android:title="Logout" />
+
+
+</menu>

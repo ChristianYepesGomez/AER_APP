@@ -2,4 +2,10 @@
     <string name="app_name">AER_APP</string>
     <string name="validate_empty_fields"> No se permiten campos vacios</string>
     <string name="validate_password_match"> Las contraseñas no coinciden</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
 </resources>

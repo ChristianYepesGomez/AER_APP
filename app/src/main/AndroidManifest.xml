@@ -14,7 +14,7 @@
         android:theme="@style/Theme.AER_APP"
         tools:targetApi="31">
         <activity
-            android:name=".AuthActivity"
+            android:name=".LogInActivity"
             android:exported="false" />
         <activity
             android:name=".HomeActivity"

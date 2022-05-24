@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.example.aer_app.databinding.ActivityAuthBinding
 import com.example.aer_app.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
 
@@ -21,22 +20,22 @@ class SignUpActivity : AppCompatActivity() {
 
         firebaseAuth = FirebaseAuth.getInstance()
 
-        binding.logInButton.setOnClickListener {
-            val intent = Intent(this, AuthActivity::class.java)
+        binding.redirectToLogInButton.setOnClickListener {
+            val intent = Intent(this, LogInActivity::class.java)
             startActivity(intent)
         }
 
-        binding.signInButton.setOnClickListener {
-            val email = binding.emailEditText.text.toString()
-            val pass = binding.passEditText.text.toString()
-            val confirmPass = binding.confirmPassEditText.text.toString()
+        binding.signUpButton.setOnClickListener {
+            val email = binding.emailEt.text.toString()
+            val pass = binding.passET.text.toString()
+            val confirmPass = binding.confirmPassEt.text.toString()
 
             if (email.isNotEmpty() && pass.isNotEmpty() && confirmPass.isNotEmpty()) {
                 if (pass == confirmPass) {
 
                     firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener {
                         if (it.isSuccessful) {
-                            val intent = Intent(this, AuthActivity::class.java)
+                            val intent = Intent(this, LogInActivity::class.java)
                             startActivity(intent)
                         } else {
                             Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT)

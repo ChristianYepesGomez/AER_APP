@@ -7,7 +7,7 @@ import android.widget.Toast
 import com.example.aer_app.databinding.ActivityAuthBinding
 import com.google.firebase.auth.FirebaseAuth
 
-class AuthActivity : AppCompatActivity() {
+class LogInActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAuthBinding
     private lateinit var firebaseAuth: FirebaseAuth
@@ -20,14 +20,14 @@ class AuthActivity : AppCompatActivity() {
 
         firebaseAuth = FirebaseAuth.getInstance()
 
-        binding.signInButton.setOnClickListener {
+        binding.redirectToSignUpButton.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
         }
 
         binding.logInButton.setOnClickListener {
-            val email = binding.emailEditText.text.toString()
-            val pass = binding.passEditText.text.toString()
+            val email = binding.emailEt.text.toString()
+            val pass = binding.passET.text.toString()
 
             if (email.isNotEmpty() && pass.isNotEmpty()) {
 
