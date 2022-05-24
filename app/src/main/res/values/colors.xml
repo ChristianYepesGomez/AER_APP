@@ -12,4 +12,7 @@
     <color name="light_pink">#F9CEEE</color>
     <color name="light_beige">#F9F3EE</color>
     <color name="dark_light_blue">#97C4B8</color>
+    <color name="grey">#A9A9A9</color>
+    <color name="green">#7CFC00</color>
+
 </resources>

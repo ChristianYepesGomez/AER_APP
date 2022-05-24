@@ -1,0 +1,110 @@
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:background="#FFFFFF"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="8dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@color/white">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/circleImageView"
+            android:layout_width="48dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/splash_screen"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/recyler_user_nick"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif"
+            android:text="Pedroa"
+            android:textAlignment="center"
+            android:textColor="@color/dark_light_blue"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/circleImageView" />
+
+        <TextView
+            android:id="@+id/recyler_user_institution"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif"
+            android:text="This is a very long title and here it is"
+            android:textColor="@color/dark_light_blue"
+            android:textColorHighlight="@color/light_blue"
+            android:textSize="18sp"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintStart_toEndOf="@+id/circleImageView"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/recyler_user_id"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="6dp"
+            android:text="TextView"
+            android:textColor="@color/grey"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintStart_toEndOf="@+id/circleImageView"
+            app:layout_constraintTop_toBottomOf="@+id/recyler_user_name_country" />
+
+        <TextView
+            android:id="@+id/recyler_user_name_country"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="6dp"
+            android:text="TextView"
+            android:textColor="@color/black"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintStart_toEndOf="@+id/circleImageView"
+            app:layout_constraintTop_toBottomOf="@+id/recyler_user_institution" />
+
+        <app.futured.donut.DonutProgressView
+            android:id="@+id/donut_view_accepteds"
+            android:layout_width="45dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="5dp"
+            android:tooltipText="Problemas intentados respecto a Resueltos"
+            app:donut_bgLineColor="@color/green"
+            app:donut_gapWidth="0"
+            app:donut_strokeWidth="2dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyler_user_nick" />
+
+        <TextView
+            android:id="@+id/user_donut_accepteds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="100/500"
+            android:textAlignment="center"
+            android:textSize="8sp"
+            android:tooltipText="Problemas intentados respecto a Resueltos"
+            app:autoSizeMaxTextSize="9sp"
+            app:autoSizeMinTextSize="8sp"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintBottom_toBottomOf="@+id/donut_view_accepteds"
+            app:layout_constraintEnd_toEndOf="@+id/donut_view_accepteds"
+            app:layout_constraintStart_toStartOf="@+id/donut_view_accepteds"
+            app:layout_constraintTop_toTopOf="@+id/donut_view_accepteds" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
