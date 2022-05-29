@@ -1,6 +1,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/user_cardview"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
@@ -9,14 +10,15 @@
     app:cardElevation="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cardViewUsers"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:background="@color/white">
+        android:background="@color/light_beige">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/circleImageView"
-            android:layout_width="48dp"
-            android:layout_height="52dp"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
             android:layout_marginStart="30dp"
             android:layout_marginTop="10dp"
             android:src="@drawable/splash_screen"
@@ -25,14 +27,17 @@
 
         <TextView
             android:id="@+id/recyler_user_nick"
-            android:layout_width="wrap_content"
-            android:layout_height="16dp"
+            android:layout_width="65dp"
+            android:layout_height="15dp"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:fontFamily="sans-serif"
-            android:text="Pedroa"
+            android:maxWidth="60dp"
+            android:text="PedroPabloAntonio"
             android:textAlignment="center"
-            android:textColor="@color/dark_light_blue"
+            android:textColor="#10B186"
+            app:autoSizeMaxTextSize="9sp"
+            app:autoSizeMinTextSize="1sp"
             app:autoSizeTextType="uniform"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/circleImageView" />
@@ -40,11 +45,11 @@
         <TextView
             android:id="@+id/recyler_user_institution"
             android:layout_width="wrap_content"
-            android:layout_height="16dp"
-            android:layout_marginStart="10dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="10dp"
             android:fontFamily="sans-serif"
-            android:text="This is a very long title and here it is"
+            android:text="Ies la Senia"
             android:textColor="@color/dark_light_blue"
             android:textColorHighlight="@color/light_blue"
             android:textSize="18sp"
@@ -55,10 +60,10 @@
         <TextView
             android:id="@+id/recyler_user_id"
             android:layout_width="wrap_content"
-            android:layout_height="16dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="6dp"
-            android:text="TextView"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="5dp"
+            android:text="Usuario numero 3949"
             android:textColor="@color/grey"
             app:autoSizeTextType="uniform"
             app:layout_constraintStart_toEndOf="@+id/circleImageView"
@@ -67,10 +72,10 @@
         <TextView
             android:id="@+id/recyler_user_name_country"
             android:layout_width="wrap_content"
-            android:layout_height="16dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="6dp"
-            android:text="TextView"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="5dp"
+            android:text="Christian - España"
             android:textColor="@color/black"
             app:autoSizeTextType="uniform"
             app:layout_constraintStart_toEndOf="@+id/circleImageView"
@@ -80,14 +85,14 @@
             android:id="@+id/donut_view_accepteds"
             android:layout_width="45dp"
             android:layout_height="50dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="5dp"
-            android:tooltipText="Problemas intentados respecto a Resueltos"
+            android:layout_marginStart="112dp"
+            android:layout_marginTop="6dp"
+            android:tooltipText="Porcentaje de problemas intentados y resueltos"
             app:donut_bgLineColor="@color/green"
             app:donut_gapWidth="0"
             app:donut_strokeWidth="2dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyler_user_nick" />
+            app:layout_constraintTop_toBottomOf="@+id/recyler_user_id" />
 
         <TextView
             android:id="@+id/user_donut_accepteds"
@@ -97,7 +102,7 @@
             android:text="100/500"
             android:textAlignment="center"
             android:textSize="8sp"
-            android:tooltipText="Problemas intentados respecto a Resueltos"
+            android:tooltipText="Porcentaje de problemas intentados y resueltos"
             app:autoSizeMaxTextSize="9sp"
             app:autoSizeMinTextSize="8sp"
             app:autoSizeTextType="uniform"
@@ -105,6 +110,78 @@
             app:layout_constraintEnd_toEndOf="@+id/donut_view_accepteds"
             app:layout_constraintStart_toStartOf="@+id/donut_view_accepteds"
             app:layout_constraintTop_toTopOf="@+id/donut_view_accepteds" />
+
+        <app.futured.donut.DonutProgressView
+            android:id="@+id/donut_view_accepteds_total"
+            android:layout_width="45dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="6dp"
+            android:tooltipText="Porcentaje de problemas resueltos del total"
+            app:donut_bgLineColor="@color/light_blue"
+            app:donut_gapWidth="0"
+            app:donut_strokeWidth="2dp"
+            app:layout_constraintStart_toEndOf="@+id/donut_view_accepteds"
+            app:layout_constraintTop_toBottomOf="@+id/recyler_user_id" />
+
+        <TextView
+            android:id="@+id/user_donut_accepteds_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="100/500"
+            android:textAlignment="center"
+            android:textSize="8sp"
+            android:tooltipText="Porcentaje de problemas resueltos del total"
+            app:autoSizeMaxTextSize="9sp"
+            app:autoSizeMinTextSize="8sp"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintBottom_toBottomOf="@+id/donut_view_accepteds_total"
+            app:layout_constraintEnd_toEndOf="@+id/donut_view_accepteds_total"
+            app:layout_constraintHorizontal_bias="0.222"
+            app:layout_constraintStart_toStartOf="@+id/donut_view_accepteds_total"
+            app:layout_constraintTop_toTopOf="@+id/donut_view_accepteds_total"
+            app:layout_constraintVertical_bias="0.413" />
+
+        <TextView
+            android:id="@+id/recyler_user_accepteds_textview"
+            android:layout_width="45dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="112dp"
+            android:gravity="center"
+            android:text="Acertados"
+            android:textAlignment="center"
+            android:textSize="8sp"
+            app:autoSizeMaxTextSize="9sp"
+            app:autoSizeMinTextSize="7sp"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/donut_view_accepteds" />
+
+        <TextView
+            android:id="@+id/recyler_user_total_textview"
+            android:layout_width="45dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="35dp"
+            android:gravity="center"
+            android:text="Completados"
+            android:textAlignment="center"
+            android:textSize="8sp"
+            app:autoSizeMaxTextSize="9sp"
+            app:autoSizeMinTextSize="7sp"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintStart_toEndOf="@+id/recyler_user_accepteds_textview"
+            app:layout_constraintTop_toBottomOf="@+id/donut_view_accepteds_total" />
+
+        <TextView
+            android:id="@+id/recylcer_pretty_background"
+            android:layout_width="15dp"
+            android:layout_height="151dp"
+            android:background="@color/dark_light_blue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

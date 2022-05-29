@@ -1,12 +1,14 @@
 package com.example.aer_app
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.aer_app.databinding.FragmentHomeBinding
-import com.example.aer_app.databinding.FragmentUserBinding
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.aer_app.adapters.UsersAdapter
+import com.example.aer_app.databinding.FragmentUserRecyclerBinding
 import com.example.aer_app.models.Problems
 import com.example.aer_app.models.Users
 import kotlinx.coroutines.CoroutineScope
@@ -16,24 +18,48 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class HomeFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
+class UserRecyclerFragment : Fragment() {
+
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var manager: RecyclerView.LayoutManager
+    private lateinit var myAdapter: UsersAdapter
+    private var _binding: FragmentUserRecyclerBinding? = null
     private val binding get() = _binding!!
     private var users_list = mutableListOf<Users>()
+    private var problem_size = mutableListOf<Int>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        getUsersData()
+        _binding = FragmentUserRecyclerBinding.inflate(inflater, container, false)
+        manager = LinearLayoutManager(context);
+        initRecycler()
+        getAllData()
 
         return binding.root
     }
 
-    fun getUsersData() {
+    private fun initRecycler() {
+        recyclerView = binding.recyclerViewUsers.apply {
+            myAdapter = UsersAdapter(users_list, problem_size, UsersAdapter.OnClickListener {
+                val bundle = Bundle()
+                bundle.putString("id", it.id_user.toString())
+                val transaction = parentFragmentManager.beginTransaction()
+                val fragment = UserFragment()
+                fragment.arguments = bundle
+                transaction.addToBackStack(null)
+                transaction.replace(com.example.aer_app.R.id.frame_layout, fragment)
+                transaction.commit()
+            })
+            layoutManager = manager
+            adapter = myAdapter
+        }
+    }
+
+
+    fun getAllData() {
         CoroutineScope(Dispatchers.IO).launch {
             Api.retrofitService.getUsersData().enqueue(object : Callback<MutableList<Users>> {
                 override fun onResponse(
@@ -43,18 +69,8 @@ class HomeFragment : Fragment() {
                     println(response)
 
                     if (response.isSuccessful) {
-                        var total_shipments = 0
-                        var institution_list = mutableListOf<String>()
+                        users_list.clear()
                         users_list.addAll(response.body()!!)
-                        binding.homeTotalUsersNumber.text = users_list.size.toString()
-                        users_list.forEach {
-                            if (!institution_list.contains(it.institution)) {
-                                institution_list.add(it.institution)
-                            }
-                            total_shipments += it.shipments
-                        }
-                        binding.homeTotalShipmentsNumber.text = total_shipments.toString()
-                        binding.homeTotalInstitutionsNumber.text = institution_list.size.toString()
                     }
                 }
 
@@ -62,18 +78,15 @@ class HomeFragment : Fragment() {
                     t.printStackTrace()
                 }
             })
+
             Api.retrofitService.getProblemData().enqueue(object : Callback<MutableList<Problems>> {
                 override fun onResponse(
                     call: Call<MutableList<Problems>>,
                     response: Response<MutableList<Problems>>
                 ) {
                     if (response.isSuccessful) {
-                        var problem_list = mutableListOf<Problems>()
-                        problem_list = response.body()!!
-                        binding.homeProblemDayNumber.text =
-                            problem_list.get((0..problem_list.size).random()).title
-                        binding.homeTotalProblemsNumber.text = problem_list.size.toString()
-
+                        problem_size.add(response.body()!!.size)
+                        myAdapter.notifyDataSetChanged()
                     }
                 }
 
@@ -82,7 +95,9 @@ class HomeFragment : Fragment() {
                 }
             })
         }
+
     }
+
 
     companion object {
 

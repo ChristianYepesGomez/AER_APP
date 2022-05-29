@@ -16,13 +16,13 @@
         android:theme="@style/Theme.AER_APP"
         tools:targetApi="31">
         <activity
-            android:name=".LogInActivity"
+            android:name=".log.LogInActivity"
             android:exported="false" />
         <activity
             android:name=".HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".log.SignUpActivity"
             android:exported="true"
             android:theme="@style/SplashTheme">
             <intent-filter>

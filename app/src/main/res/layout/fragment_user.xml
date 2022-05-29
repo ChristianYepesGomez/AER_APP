@@ -6,20 +6,87 @@
     android:layout_height="match_parent"
     tools:context=".UserFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_users"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginRight="1dp"
-        android:layout_marginBottom="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/list_item_user" />
+        android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/img_user_fragment"
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="25dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/name_user_fragment"
+            android:layout_width="wrap_content"
+            android:layout_height="30sp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="40dp"
+            android:text="Paco"
+            android:textSize="25sp"
+            app:autoSizeMaxTextSize="25sp"
+            app:autoSizeMinTextSize="1sp"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintStart_toEndOf="@+id/img_user_fragment"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/institution_user_fragment"
+            android:layout_width="wrap_content"
+            android:layout_height="30sp"
+            android:layout_marginStart="20dp"
+            android:text="IES comercio"
+            android:textSize="19sp"
+            app:autoSizeMaxTextSize="19sp"
+            app:autoSizeMinTextSize="1sp"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintStart_toEndOf="@+id/img_user_fragment"
+            app:layout_constraintTop_toBottomOf="@+id/name_user_fragment" />
+
+        <TextView
+            android:id="@+id/nick_user_fragment"
+            android:layout_width="wrap_content"
+            android:layout_height="30sp"
+            android:layout_marginStart="20dp"
+            android:text="marcoa"
+            android:textSize="19sp"
+            app:autoSizeMaxTextSize="19sp"
+            app:autoSizeMinTextSize="1sp"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintStart_toEndOf="@+id/img_user_fragment"
+            app:layout_constraintTop_toBottomOf="@+id/institution_user_fragment" />
+
+        <TextView
+            android:id="@+id/user_completed_problems"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="40dp"
+            android:text="Completados"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_user_fragment" />
+
+        <TextView
+            android:id="@+id/user_intented_problems"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="164dp"
+            android:text="Intentados"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/user_completed_problems" />
+
+        <TextView
+            android:id="@+id/user_total_shipments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="280dp"
+            android:text="Envios totales:"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/user_intented_problems" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

@@ -1,14 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:gravity="center|top"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/home_total_shipments_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="75dp"
+            android:text="Envios Totales"
+            android:textColor="@color/dark_light_blue" />
+
+        <TextView
+            android:id="@+id/home_total_shipments_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="0"
+            android:textColor="#C6C335AB" />
+
+        <View
+            android:layout_width="300dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/light_pink" />
+
+        <TextView
+            android:id="@+id/home_total_institutions_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="Instituciones"
+            android:textColor="@color/dark_light_blue" />
+
+        <TextView
+            android:id="@+id/home_total_institutions_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="0"
+            android:textColor="#C6C335AB" />
+
+        <View
+            android:layout_width="300dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/light_pink" />
+
+        <TextView
+            android:id="@+id/home_total_problems_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="Problemas"
+            android:textColor="@color/dark_light_blue" />
+
+        <TextView
+            android:id="@+id/home_total_problems_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="0"
+            android:textColor="#C6C335AB" />
+
+        <View
+            android:layout_width="300dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/light_pink" />
+
+        <TextView
+            android:id="@+id/home_total_users_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:gravity="center"
+            android:text="Usuarios "
+            android:textColor="@color/dark_light_blue" />
+
+        <TextView
+            android:id="@+id/home_total_users_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="0"
+            android:textColor="#C6C335AB" />
+
+        <View
+            android:layout_width="300dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/light_pink" />
+
+        <TextView
+            android:id="@+id/home_problem_day_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Problema del dia"
+            android:textColor="@color/dark_light_blue" />
+
+        <TextView
+            android:id="@+id/home_problem_day_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text=""
+            android:textColor="#C6C335AB" />
+
+    </LinearLayout>
 
 </FrameLayout>

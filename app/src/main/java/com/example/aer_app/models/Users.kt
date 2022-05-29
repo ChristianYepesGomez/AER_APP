@@ -11,7 +11,7 @@ data class Users(
     val total_accepteds: Int,
     val intents: Int,
     val accepteds: Int,
-    //val problems_resolved: Int,
+    //val problems_attempted: List<ProblemsShort>,
 
 ) {
 }
