@@ -66,7 +66,6 @@ class UserRecyclerFragment : Fragment() {
                     call: Call<MutableList<Users>>,
                     response: Response<MutableList<Users>>
                 ) {
-                    println(response)
 
                     if (response.isSuccessful) {
                         users_list.clear()

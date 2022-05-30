@@ -22,7 +22,7 @@ class LogInActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         firebaseAuth = FirebaseAuth.getInstance()
-
+        binding.logIn.requestFocus()
         binding.redirectToSignUpButton.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)

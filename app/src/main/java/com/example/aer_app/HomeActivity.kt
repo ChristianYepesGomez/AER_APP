@@ -1,12 +1,15 @@
 package com.example.aer_app
 
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.example.aer_app.databinding.ActivityHomeBinding
@@ -28,8 +31,9 @@ class HomeActivity : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
         chargeDrawer()
 
-
     }
+
+
 
     //function to charge the Drawer menu and the items inside the menu
     fun chargeDrawer() {
@@ -58,7 +62,10 @@ class HomeActivity : AppCompatActivity() {
                 //Users
                 R.id.nav_usuarios -> replaceFragment(UserRecyclerFragment(), it.title.toString())
                 //Problems
-                R.id.nav_problemas -> replaceFragment(ProblemFragment(), it.title.toString())
+                R.id.nav_problemas -> replaceFragment(
+                    ProblemRecyclerFragment(),
+                    it.title.toString()
+                )
                 //Institutions
                 R.id.nav_instituciones -> replaceFragment(
                     InstitutionFragment(),

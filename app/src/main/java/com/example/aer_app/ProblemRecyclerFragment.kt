@@ -5,55 +5,84 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.aer_app.adapters.ProblemsAdapter
+import com.example.aer_app.adapters.UsersAdapter
+import com.example.aer_app.databinding.FragmentProblemRecyclerBinding
+import com.example.aer_app.databinding.FragmentUserBinding
+import com.example.aer_app.databinding.FragmentUserRecyclerBinding
+import com.example.aer_app.models.Problems
+import com.example.aer_app.models.Users
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ProblemRecyclerFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ProblemRecyclerFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var _binding: FragmentProblemRecyclerBinding? = null
+    private val binding get() = _binding!!
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var manager: RecyclerView.LayoutManager
+    private lateinit var myAdapter: ProblemsAdapter
+    private var problems_list = mutableListOf<Problems>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_problem_recycler, container, false)
+        _binding = FragmentProblemRecyclerBinding.inflate(inflater, container, false)
+        manager = LinearLayoutManager(context);
+
+        initRecycler()
+        getAllDataProblems()
+        return binding.root
+    }
+
+    private fun initRecycler() {
+        recyclerView = binding.recyclerViewProblems.apply {
+            myAdapter = ProblemsAdapter(problems_list, ProblemsAdapter.OnClickListener {
+                val bundle = Bundle()
+                bundle.putString("id", it.id_problem.toString())
+                val transaction = parentFragmentManager.beginTransaction()
+                val fragment = UserFragment()
+                fragment.arguments = bundle
+                transaction.addToBackStack(null)
+                transaction.replace(R.id.frame_layout, fragment)
+                transaction.commit()
+            })
+            layoutManager = manager
+            adapter = myAdapter
+        }
+    }
+
+    fun getAllDataProblems() {
+        CoroutineScope(Dispatchers.IO).launch {
+
+            Api.retrofitService.getProblemData().enqueue(object : Callback<MutableList<Problems>> {
+                override fun onResponse(
+                    call: Call<MutableList<Problems>>,
+                    response: Response<MutableList<Problems>>
+                ) {
+                    if (response.isSuccessful) {
+                        problems_list.addAll(response.body()!!)
+                        myAdapter.notifyDataSetChanged()
+                    }
+                }
+
+                override fun onFailure(call: Call<MutableList<Problems>>, t: Throwable) {
+                    t.printStackTrace()
+                }
+            })
+        }
+
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ProblemRecyclerFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ProblemRecyclerFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+
     }
 }

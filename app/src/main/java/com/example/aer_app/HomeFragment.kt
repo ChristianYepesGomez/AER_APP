@@ -68,7 +68,7 @@ class HomeFragment : Fragment() {
                     response: Response<MutableList<Problems>>
                 ) {
                     if (response.isSuccessful) {
-                        var problem_list = mutableListOf<Problems>()
+                        var problem_list: MutableList<Problems>
                         problem_list = response.body()!!
                         binding.homeProblemDayNumber.text =
                             problem_list.get((0..problem_list.size).random()).title

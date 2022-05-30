@@ -1,8 +1,11 @@
 package com.example.aer_app.log
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.example.aer_app.R
 import com.example.aer_app.databinding.ActivitySignUpBinding
@@ -20,7 +23,7 @@ class SignUpActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         firebaseAuth = FirebaseAuth.getInstance()
-
+        binding.signUp.requestFocus()
         binding.redirectToLogInButton.setOnClickListener {
             val intent = Intent(this, LogInActivity::class.java)
             startActivity(intent)
@@ -30,7 +33,6 @@ class SignUpActivity : AppCompatActivity() {
             val email = binding.emailEt.text.toString()
             val pass = binding.passET.text.toString()
             val confirmPass = binding.confirmPassEt.text.toString()
-
             if (email.isNotEmpty() && pass.isNotEmpty() && confirmPass.isNotEmpty()) {
                 if (pass == confirmPass) {
 
@@ -58,5 +60,7 @@ class SignUpActivity : AppCompatActivity() {
             }
 
         }
+
     }
+
 }
