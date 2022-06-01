@@ -1,14 +1,207 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProblemFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:background="@color/light_beige">
 
+        <TextView
+            android:id="@+id/title_problem"
+            android:layout_width="418dp"
+            android:layout_height="72dp"
+            android:layout_marginTop="50dp"
+            android:background="@color/light_beige"
+            android:gravity="center"
+            android:text="Constante de Kaprekar"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:orientation="horizontal"
+            android:weightSum="10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_problem">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:orientation="vertical"
+                android:weightSum="20">
+
+                <TextView
+                    android:id="@+id/number_problem_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="5"
+                    android:background="@color/dark_light_blue"
+                    android:gravity="center|center_horizontal"
+                    android:text="Numero"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/number_problem_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_weight="5"
+                    android:gravity="center|center_horizontal"
+                    android:text="100"
+                    android:textColor="@color/black" />
+
+
+                <TextView
+                    android:id="@+id/percentage_difficulty_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="5"
+                    android:background="@color/light_blue"
+                    android:gravity="center|center_horizontal"
+                    android:text="Porcentaje de dificultad"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/percentage_difficulty_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_weight="5"
+                    android:gravity="center|center_horizontal"
+                    android:text="50%"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/number_shipments_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="5"
+                    android:background="@color/dark_light_blue"
+                    android:gravity="center|center_horizontal"
+                    android:text="Número de enviós"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/number_shipments_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_weight="5"
+                    android:gravity="center|center_horizontal"
+                    android:text="50%"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/users_attempt_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="5"
+                    android:background="@color/light_blue"
+                    android:gravity="center|center_horizontal"
+                    android:text="Usuarios que lo han intentado"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/users_attempt_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_weight="5"
+                    android:gravity="center|center_horizontal"
+                    android:shadowColor="@color/black"
+                    android:text="50%"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/users_aceepted_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="5"
+                    android:background="@color/dark_light_blue"
+                    android:gravity="center|center_horizontal"
+                    android:text="Usuarios que lo han conseguido"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/users_accepted_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_weight="5"
+                    android:gravity="center|center_horizontal"
+                    android:shadowColor="@color/black"
+                    android:text="50%"
+                    android:textColor="@color/black" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:orientation="vertical"
+                android:weightSum="20">
+
+                <TextView
+                    android:id="@+id/problem_language"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="5"
+                    android:background="@color/dark_light_blue"
+                    android:gravity="center"
+                    android:text="Lenguajes"
+                    android:textColor="@android:color/black" />
+
+                <app.futured.donut.DonutProgressView
+                    android:id="@+id/problem_language_donut"
+                    android:layout_width="100dp"
+                    android:layout_height="71dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="5"
+                    android:tooltipText="Numero de envios en cada lenguaje"
+                    app:donut_bgLineColor="@color/green"
+                    app:donut_gapWidth="0"
+                    app:donut_strokeWidth="7dp" />
+
+                <TextView
+                    android:id="@+id/problem_shipments"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="5"
+                    android:background="@color/dark_light_blue"
+                    android:gravity="center"
+                    android:text="Envios"
+                    android:textColor="@android:color/black" />
+
+                <app.futured.donut.DonutProgressView
+                    android:id="@+id/problem_shipments_donut"
+                    android:layout_width="100dp"
+                    android:layout_height="71dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="5"
+                    android:tooltipText="Resultados de los envios"
+                    app:donut_bgLineColor="@color/green"
+                    app:donut_gapWidth="0"
+                    app:donut_strokeWidth="7dp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

@@ -26,7 +26,7 @@ class UsersAdapter(
             val institution = view.findViewById<TextView>(R.id.recyler_user_institution)
             val id = view.findViewById<TextView>(R.id.recyler_user_id)
             val name = view.findViewById<TextView>(R.id.recyler_user_name_country)
-            val donut_accepteds = view.findViewById<DonutProgressView>(R.id.donut_view_accepteds)
+            val donut_accepteds = view.findViewById<DonutProgressView>(R.id.problem_language_donut)
             val donut_accepteds_total =
                 view.findViewById<DonutProgressView>(R.id.donut_view_accepteds_total)
             val donut_accepteds_text = view.findViewById<TextView>(R.id.user_donut_accepteds)

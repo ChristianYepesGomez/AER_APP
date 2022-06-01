@@ -49,7 +49,7 @@ class ProblemRecyclerFragment : Fragment() {
                 val bundle = Bundle()
                 bundle.putString("id", it.id_problem.toString())
                 val transaction = parentFragmentManager.beginTransaction()
-                val fragment = UserFragment()
+                val fragment = ProblemFragment()
                 fragment.arguments = bundle
                 transaction.addToBackStack(null)
                 transaction.replace(R.id.frame_layout, fragment)
@@ -63,7 +63,7 @@ class ProblemRecyclerFragment : Fragment() {
     fun getAllDataProblems() {
         CoroutineScope(Dispatchers.IO).launch {
 
-            Api.retrofitService.getProblemData().enqueue(object : Callback<MutableList<Problems>> {
+            Api.retrofitService.getProblemsData().enqueue(object : Callback<MutableList<Problems>> {
                 override fun onResponse(
                     call: Call<MutableList<Problems>>,
                     response: Response<MutableList<Problems>>

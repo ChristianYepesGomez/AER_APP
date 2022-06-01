@@ -62,7 +62,7 @@ class HomeFragment : Fragment() {
                     t.printStackTrace()
                 }
             })
-            Api.retrofitService.getProblemData().enqueue(object : Callback<MutableList<Problems>> {
+            Api.retrofitService.getProblemsData().enqueue(object : Callback<MutableList<Problems>> {
                 override fun onResponse(
                     call: Call<MutableList<Problems>>,
                     response: Response<MutableList<Problems>>

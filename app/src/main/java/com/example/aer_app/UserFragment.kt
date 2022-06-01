@@ -41,7 +41,6 @@ class UserFragment : Fragment() {
                     call: Call<Users>,
                     response: Response<Users>
                 ) {
-                    println(response)
 
                     if (response.isSuccessful) {
                         val user = response.body()!!

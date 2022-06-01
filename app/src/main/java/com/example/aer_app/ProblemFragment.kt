@@ -1,59 +1,140 @@
 package com.example.aer_app
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import app.futured.donut.DonutSection
+import com.example.aer_app.databinding.FragmentProblemBinding
+import com.example.aer_app.databinding.FragmentUserBinding
+import com.example.aer_app.models.Problems
+import com.example.aer_app.models.Users
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ProblemFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ProblemFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var _binding: FragmentProblemBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_problem, container, false)
+
+        _binding = FragmentProblemBinding.inflate(inflater, container, false)
+        val id_user = this.arguments?.get("id")
+
+        getProblemData(id_user.toString())
+
+        return binding.root
+
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ProblemFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ProblemFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    fun getProblemData(id_user: String) {
+        CoroutineScope(Dispatchers.IO).launch {
+
+            Api.retrofitService.getProblemData(id_user).enqueue(object : Callback<Problems> {
+                override fun onResponse(
+                    call: Call<Problems>,
+                    response: Response<Problems>
+                ) {
+
+                    if (response.isSuccessful) {
+                        val problem = response.body()!!
+                        binding.titleProblem.text = problem.title
+                        binding.numberProblemNumber.text = problem.id_problem.toString()
+                        binding.percentageDifficultyNumber.text =
+                            problem.percentage_users_completed.toString() + "%"
+                        binding.numberShipmentsNumber.text =
+                            (problem.java_shipments + problem.c_shipments + problem.cpp_shipments).toString()
+                        binding.usersAttemptNumber.text = problem.attempts.toString()
+                        binding.usersAcceptedNumber.text = problem.no_repeated_accepteds.toString()
+
+                        //Donuts sections
+
+                        val section_wrongAnswer = DonutSection(
+                            name = "wrongAnswer",
+                            color = Color.parseColor("#FF9900"),
+                            amount = problem.wrong_answer.toFloat()
+                        )
+
+                        val section_accepteds = DonutSection(
+                            name = "accepteds",
+                            color = Color.parseColor("#3366CC"),
+                            amount = problem.accepteds.toFloat()
+                        )
+
+                        val section_timeLimit = DonutSection(
+                            name = "timeLimit",
+                            color = Color.parseColor("#109618"),
+                            amount = problem.time_limit.toFloat()
+                        )
+
+                        val section_memoryLimit = DonutSection(
+                            name = "memoryLimit",
+                            color = Color.parseColor("#8A2BE2"),
+                            amount = problem.memory_limit.toFloat()
+                        )
+
+                        val section_presentationError = DonutSection(
+                            name = "presentationError",
+                            color = Color.parseColor("#DC3912"),
+                            amount = problem.presentation_error.toFloat()
+                        )
+
+                        val section_other = DonutSection(
+                            name = "other",
+                            color = Color.parseColor("#CCCCCC"),
+                            amount = problem.other.toFloat()
+                        )
+
+                        val section_restrictedFunction = DonutSection(
+                            name = "restrictedFunction",
+                            color = Color.parseColor("#DD4477"),
+                            amount = problem.restricted_function.toFloat()
+                        )
+
+                        val section_compilationError = DonutSection(
+                            name = "compilationError",
+                            color = Color.parseColor("#B82E2E"),
+                            amount = problem.compilation_error.toFloat()
+                        )
+                        binding.problemShipmentsDonut.cap = (problem.shipments.toFloat())
+                        binding.problemShipmentsDonut.submitData(
+                            listOf(
+                                section_accepteds,
+                                section_other,
+                                section_compilationError,
+                                section_memoryLimit,
+                                section_presentationError,
+                                section_restrictedFunction,
+                                section_timeLimit,
+                                section_wrongAnswer
+                            )
+                        )
+
+                    }
                 }
-            }
+
+                override fun onFailure(call: Call<Problems>, t: Throwable) {
+                    t.printStackTrace()
+                }
+
+
+            })
+        }
+    }
+
+
+    companion object {
+
     }
 }

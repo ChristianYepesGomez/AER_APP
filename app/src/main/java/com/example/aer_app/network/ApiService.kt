@@ -25,9 +25,12 @@ interface ApiService {
 
     @GET("usuarios/base/{id}?format=json")
     fun getUserData(@Path("id") id: String): Call<Users>
-    
+
     @GET("problemas/base/?format=json")
-    fun getProblemData(): Call<MutableList<Problems>>
+    fun getProblemsData(): Call<MutableList<Problems>>
+
+    @GET("problemas/base/{id}?format=json")
+    fun getProblemData(@Path("id") id: String): Call<Problems>
 
     @GET("categorias/base/?format=json")
     fun getCategoriesData(): Call<MutableList<Categories>>
