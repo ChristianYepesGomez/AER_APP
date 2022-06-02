@@ -1,6 +1,7 @@
 package com.example.aer_app
 
 import com.example.aer_app.models.Categories
+import com.example.aer_app.models.Institutions
 import com.example.aer_app.models.Problems
 import com.example.aer_app.models.Users
 import com.squareup.moshi.Moshi
@@ -34,6 +35,9 @@ interface ApiService {
 
     @GET("categorias/base/?format=json")
     fun getCategoriesData(): Call<MutableList<Categories>>
+
+    @GET("instituciones/base/?format=json")
+    fun getInstitutionsData(): Call<MutableList<Institutions>>
 
 
 }

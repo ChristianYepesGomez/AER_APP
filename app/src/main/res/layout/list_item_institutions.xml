@@ -15,43 +15,51 @@
         android:layout_height="52dp"
         android:background="@color/light_beige">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        <TextView
+            android:id="@+id/name_institution_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_weight="1"
             android:gravity="center"
-            android:orientation="horizontal"
-            android:weightSum="3"
-            tools:layout_editor_absoluteX="275dp"
-            tools:layout_editor_absoluteY="1dp">
+            android:maxWidth="250dp"
+            android:text="IES La Senia"
+            android:textAlignment="textStart"
+            android:textColor="@android:color/holo_green_dark"
+            android:tooltipText="Nombre de la Institucion"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/name_institution_item"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="IES La Senia"
-                android:textColor="@android:color/holo_green_dark" />
+        <TextView
+            android:id="@+id/solved_problems_institutions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Resueltos: 50"
+            android:textColor="@android:color/holo_green_light"
+            android:tooltipText="Problemas resueltos"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/number_users_institution"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Usuarios: 100"
-                android:textColor="@android:color/holo_green_light" />
+        <TextView
+            android:id="@+id/number_users_institution"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="120dp"
+            android:layout_weight="1"
 
-            <TextView
-                android:id="@+id/solved_problems_institutions"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Resueltos: 50"
-                android:textColor="@android:color/holo_green_light" />
+            android:gravity="center"
+            android:text="Usuarios: 100"
+            android:textColor="@android:color/holo_green_light"
+            android:tooltipText="Numero de usuarios"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

@@ -34,7 +34,6 @@ class HomeActivity : AppCompatActivity() {
     }
 
 
-
     //function to charge the Drawer menu and the items inside the menu
     fun chargeDrawer() {
         drawerLayout = binding.drawerLayout
@@ -68,7 +67,7 @@ class HomeActivity : AppCompatActivity() {
                 )
                 //Institutions
                 R.id.nav_instituciones -> replaceFragment(
-                    InstitutionFragment(),
+                    InstitutionRecyclerFragment(),
                     it.title.toString()
                 )
                 //Setting
