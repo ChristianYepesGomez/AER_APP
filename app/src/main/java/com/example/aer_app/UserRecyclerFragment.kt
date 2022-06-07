@@ -11,6 +11,7 @@ import com.example.aer_app.adapters.UsersAdapter
 import com.example.aer_app.databinding.FragmentUserRecyclerBinding
 import com.example.aer_app.models.Problems
 import com.example.aer_app.models.Users
+import com.example.aer_app.models.UsersNoProblems
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -26,7 +27,7 @@ class UserRecyclerFragment : Fragment() {
     private lateinit var myAdapter: UsersAdapter
     private var _binding: FragmentUserRecyclerBinding? = null
     private val binding get() = _binding!!
-    private var users_list = mutableListOf<Users>()
+    private var users_list = mutableListOf<UsersNoProblems>()
     private var problem_size = mutableListOf<Int>()
 
     override fun onCreateView(
@@ -61,22 +62,23 @@ class UserRecyclerFragment : Fragment() {
 
     fun getAllData() {
         CoroutineScope(Dispatchers.IO).launch {
-            Api.retrofitService.getUsersData().enqueue(object : Callback<MutableList<Users>> {
-                override fun onResponse(
-                    call: Call<MutableList<Users>>,
-                    response: Response<MutableList<Users>>
-                ) {
+            Api.retrofitService.getUsersData()
+                .enqueue(object : Callback<MutableList<UsersNoProblems>> {
+                    override fun onResponse(
+                        call: Call<MutableList<UsersNoProblems>>,
+                        response: Response<MutableList<UsersNoProblems>>
+                    ) {
 
-                    if (response.isSuccessful) {
-                        users_list.clear()
-                        users_list.addAll(response.body()!!)
+                        if (response.isSuccessful) {
+                            users_list.clear()
+                            users_list.addAll(response.body()!!)
+                        }
                     }
-                }
 
-                override fun onFailure(call: Call<MutableList<Users>>, t: Throwable) {
-                    t.printStackTrace()
-                }
-            })
+                    override fun onFailure(call: Call<MutableList<UsersNoProblems>>, t: Throwable) {
+                        t.printStackTrace()
+                    }
+                })
 
             Api.retrofitService.getProblemsData().enqueue(object : Callback<MutableList<Problems>> {
                 override fun onResponse(

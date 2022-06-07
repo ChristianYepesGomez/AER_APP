@@ -10,9 +10,12 @@ import app.futured.donut.DonutProgressView
 import app.futured.donut.DonutSection
 import com.example.aer_app.R
 import com.example.aer_app.models.Users
+import com.example.aer_app.models.UsersNoProblems
+import com.squareup.picasso.Picasso
+import de.hdodenhof.circleimageview.CircleImageView
 
 class UsersAdapter(
-    private val user_data: MutableList<Users>,
+    private val user_data: MutableList<UsersNoProblems>,
     private val problem_size: MutableList<Int>,
     private val onClickListener: OnClickListener
 ) :
@@ -21,7 +24,7 @@ class UsersAdapter(
     class MyViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
 
-        fun bind(user: Users, problem_size: Int) {
+        fun bind(user: UsersNoProblems, problem_size: Int) {
             val nick = view.findViewById<TextView>(R.id.recyler_user_nick)
             val institution = view.findViewById<TextView>(R.id.recyler_user_institution)
             val id = view.findViewById<TextView>(R.id.recyler_user_id)
@@ -32,6 +35,9 @@ class UsersAdapter(
             val donut_accepteds_text = view.findViewById<TextView>(R.id.user_donut_accepteds)
             val donut_accepteds_total_text =
                 view.findViewById<TextView>(R.id.user_donut_accepteds_total)
+            val profileImage = view.findViewById<CircleImageView>(R.id.circleImageViewUserItem)
+
+            Picasso.get().load(user.logo_src).into(profileImage);
 
             nick.text = user.nick
             name.text = user.name
@@ -59,9 +65,6 @@ class UsersAdapter(
 
                 donut_accepteds_text.text =
                     (user.accepteds.toDouble() / user.intents * 100).toInt().toString() + "%"
-                println(problem_size)
-                println(user.accepteds)
-                println((user.accepteds.toDouble() / problem_size).toFloat())
 
                 donut_accepteds_total_text.text =
                     (user.accepteds.toDouble() / problem_size * 100).toInt().toString() + "%"
@@ -128,8 +131,8 @@ class UsersAdapter(
 
     }
 
-    class OnClickListener(val clickListener: (user: Users) -> Unit) {
-        fun onClick(user: Users) = clickListener(user)
+    class OnClickListener(val clickListener: (user: UsersNoProblems) -> Unit) {
+        fun onClick(user: UsersNoProblems) = clickListener(user)
     }
 
 }

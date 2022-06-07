@@ -9,6 +9,7 @@ import com.example.aer_app.databinding.FragmentHomeBinding
 import com.example.aer_app.databinding.FragmentUserBinding
 import com.example.aer_app.models.Problems
 import com.example.aer_app.models.Users
+import com.example.aer_app.models.UsersNoProblems
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -20,7 +21,7 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private var users_list = mutableListOf<Users>()
+    private var users_list = mutableListOf<UsersNoProblems>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,33 +36,33 @@ class HomeFragment : Fragment() {
 
     fun getUsersData() {
         CoroutineScope(Dispatchers.IO).launch {
-            Api.retrofitService.getUsersData().enqueue(object : Callback<MutableList<Users>> {
-                override fun onResponse(
-                    call: Call<MutableList<Users>>,
-                    response: Response<MutableList<Users>>
-                ) {
-                    println(response)
-
-                    if (response.isSuccessful) {
-                        var total_shipments = 0
-                        var institution_list = mutableListOf<String>()
-                        users_list.addAll(response.body()!!)
-                        binding.homeTotalUsersNumber.text = users_list.size.toString()
-                        users_list.forEach {
-                            if (!institution_list.contains(it.institution)) {
-                                institution_list.add(it.institution)
+            Api.retrofitService.getUsersData()
+                .enqueue(object : Callback<MutableList<UsersNoProblems>> {
+                    override fun onResponse(
+                        call: Call<MutableList<UsersNoProblems>>,
+                        response: Response<MutableList<UsersNoProblems>>
+                    ) {
+                        if (response.isSuccessful) {
+                            var total_shipments = 0
+                            var institution_list = mutableListOf<String>()
+                            users_list.addAll(response.body()!!)
+                            binding.homeTotalUsersNumber.text = users_list.size.toString()
+                            users_list.forEach {
+                                if (!institution_list.contains(it.institution)) {
+                                    institution_list.add(it.institution)
+                                }
+                                total_shipments += it.shipments
                             }
-                            total_shipments += it.shipments
+                            binding.homeTotalShipmentsNumber.text = total_shipments.toString()
+                            binding.homeTotalInstitutionsNumber.text =
+                                institution_list.size.toString()
                         }
-                        binding.homeTotalShipmentsNumber.text = total_shipments.toString()
-                        binding.homeTotalInstitutionsNumber.text = institution_list.size.toString()
                     }
-                }
 
-                override fun onFailure(call: Call<MutableList<Users>>, t: Throwable) {
-                    t.printStackTrace()
-                }
-            })
+                    override fun onFailure(call: Call<MutableList<UsersNoProblems>>, t: Throwable) {
+                        t.printStackTrace()
+                    }
+                })
             Api.retrofitService.getProblemsData().enqueue(object : Callback<MutableList<Problems>> {
                 override fun onResponse(
                     call: Call<MutableList<Problems>>,

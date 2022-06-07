@@ -1,9 +1,6 @@
 package com.example.aer_app
 
-import com.example.aer_app.models.Categories
-import com.example.aer_app.models.Institutions
-import com.example.aer_app.models.Problems
-import com.example.aer_app.models.Users
+import com.example.aer_app.models.*
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Call
@@ -21,8 +18,8 @@ private val retrofit =
 
 interface ApiService {
 
-    @GET("usuarios/base/?format=json")
-    fun getUsersData(): Call<MutableList<Users>>
+    @GET("usuarios/no_problems/?format=json")
+    fun getUsersData(): Call<MutableList<UsersNoProblems>>
 
     @GET("usuarios/base/{id}?format=json")
     fun getUserData(@Path("id") id: String): Call<Users>
@@ -39,6 +36,8 @@ interface ApiService {
     @GET("instituciones/base/?format=json")
     fun getInstitutionsData(): Call<MutableList<Institutions>>
 
+    @GET("instituciones/base/{id}/?format=json")
+    fun getInstitutionData(@Path("id") id: String): Call<Institutions>
 
 }
 

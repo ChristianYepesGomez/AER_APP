@@ -1,6 +1,6 @@
 package com.example.aer_app.models
 
-data class Users(
+data class UsersNoProblems(
     val id_user: Int,
     val nick: String,
     val name: String,
@@ -11,7 +11,5 @@ data class Users(
     val total_accepteds: Int,
     val intents: Int,
     val accepteds: Int,
-    val problems_attempted: List<ProblemsShort>,
-    val problems_solved: List<ProblemsShort>
 ) {
 }

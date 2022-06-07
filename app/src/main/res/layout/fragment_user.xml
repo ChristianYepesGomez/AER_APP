@@ -23,9 +23,10 @@
             android:id="@+id/name_user_fragment"
             android:layout_width="wrap_content"
             android:layout_height="30sp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="40dp"
-            android:text="Paco"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:gravity="left"
+            android:text="Luisma"
             android:textSize="25sp"
             app:autoSizeMaxTextSize="25sp"
             app:autoSizeMinTextSize="1sp"
@@ -37,8 +38,10 @@
             android:id="@+id/institution_user_fragment"
             android:layout_width="wrap_content"
             android:layout_height="30sp"
-            android:layout_marginStart="20dp"
-            android:text="IES comercio"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:text="1"
+            android:textAlignment="textStart"
             android:textSize="19sp"
             app:autoSizeMaxTextSize="19sp"
             app:autoSizeMinTextSize="1sp"
@@ -50,8 +53,9 @@
             android:id="@+id/nick_user_fragment"
             android:layout_width="wrap_content"
             android:layout_height="30sp"
-            android:layout_marginStart="20dp"
-            android:text="marcoa"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:text="luisma"
             android:textSize="19sp"
             app:autoSizeMaxTextSize="19sp"
             app:autoSizeMinTextSize="1sp"
@@ -63,9 +67,11 @@
             android:id="@+id/user_completed_problems"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
             android:layout_marginTop="40dp"
             android:text="Completados"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.091"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/img_user_fragment" />
 
@@ -73,8 +79,10 @@
             android:id="@+id/user_intented_problems"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="164dp"
             android:text="Intentados"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.468"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/user_completed_problems" />
 
@@ -82,10 +90,56 @@
             android:id="@+id/user_total_shipments"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="280dp"
             android:text="Envios totales:"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.881"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/user_intented_problems" />
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/user_completed_problems">
+
+            <TableLayout
+                android:id="@+id/table_problems_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/problem_table_user"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ID"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/title_problem_user_table"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="100dp"
+                        android:text="Nombre"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/state_problem_user_table"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="100dp"
+                        android:text="Estado"
+                        android:textColor="@color/black" />
+                </TableRow>
+
+            </TableLayout>
+        </ScrollView>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

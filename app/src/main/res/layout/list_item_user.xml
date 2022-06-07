@@ -16,7 +16,7 @@
         android:background="@color/light_beige">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/circleImageView"
+            android:id="@+id/circleImageViewUserItem"
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:layout_marginStart="30dp"
@@ -40,7 +40,7 @@
             app:autoSizeMinTextSize="1sp"
             app:autoSizeTextType="uniform"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/circleImageView" />
+            app:layout_constraintTop_toBottomOf="@+id/circleImageViewUserItem" />
 
         <TextView
             android:id="@+id/recyler_user_institution"
@@ -54,7 +54,7 @@
             android:textColorHighlight="@color/light_blue"
             android:textSize="18sp"
             app:autoSizeTextType="uniform"
-            app:layout_constraintStart_toEndOf="@+id/circleImageView"
+            app:layout_constraintStart_toEndOf="@+id/circleImageViewUserItem"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -66,7 +66,7 @@
             android:text="Usuario numero 3949"
             android:textColor="@color/grey"
             app:autoSizeTextType="uniform"
-            app:layout_constraintStart_toEndOf="@+id/circleImageView"
+            app:layout_constraintStart_toEndOf="@+id/circleImageViewUserItem"
             app:layout_constraintTop_toBottomOf="@+id/recyler_user_name_country" />
 
         <TextView
@@ -78,7 +78,7 @@
             android:text="Christian - España"
             android:textColor="@color/black"
             app:autoSizeTextType="uniform"
-            app:layout_constraintStart_toEndOf="@+id/circleImageView"
+            app:layout_constraintStart_toEndOf="@+id/circleImageViewUserItem"
             app:layout_constraintTop_toBottomOf="@+id/recyler_user_institution" />
 
         <app.futured.donut.DonutProgressView
@@ -128,8 +128,6 @@
             android:id="@+id/user_donut_accepteds_total"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
             android:gravity="center"
             android:text="100/500"
             android:textAlignment="center"
@@ -140,10 +138,8 @@
             app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toBottomOf="@+id/donut_view_accepteds_total"
             app:layout_constraintEnd_toEndOf="@+id/donut_view_accepteds_total"
-            app:layout_constraintHorizontal_bias="0.222"
             app:layout_constraintStart_toStartOf="@+id/donut_view_accepteds_total"
-            app:layout_constraintTop_toTopOf="@+id/donut_view_accepteds_total"
-            app:layout_constraintVertical_bias="0.413" />
+            app:layout_constraintTop_toTopOf="@+id/donut_view_accepteds_total" />
 
         <TextView
             android:id="@+id/recyler_user_accepteds_textview"
