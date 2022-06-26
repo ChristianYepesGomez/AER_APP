@@ -121,6 +121,31 @@ class ProblemFragment : Fragment() {
                             )
                         )
 
+                        //Donut Languages Section
+                        val sectio_java = DonutSection(
+                            name = "java",
+                            color = Color.parseColor("#FF9900"),
+                            amount = problem.java_shipments.toFloat()
+                        )
+                        val sectio_C = DonutSection(
+                            name = "c",
+                            color = Color.parseColor("#3366CC"),
+                            amount = problem.c_shipments.toFloat()
+                        )
+                        val sectio_Cpp = DonutSection(
+                            name = "cpp",
+                            color = Color.parseColor("#DC3912"),
+                            amount = problem.cpp_shipments.toFloat()
+                        )
+                        binding.problemLanguageDonut.cap = (problem.shipments.toFloat())
+                        binding.problemLanguageDonut.submitData(
+                            listOf(
+                                sectio_java,
+                                sectio_C,
+                                sectio_Cpp
+                            )
+                        )
+
                     }
                 }
 
