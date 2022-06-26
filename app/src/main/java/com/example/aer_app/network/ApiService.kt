@@ -8,6 +8,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 private const val BASE_URL = "http://84.121.186.190:8091/"
 
@@ -23,6 +24,9 @@ interface ApiService {
 
     @GET("usuarios/base/{id}?format=json")
     fun getUserData(@Path("id") id: String): Call<Users>
+
+    @GET("usuarios/no_problems/?format=json")
+    fun getUsersByName(@Query("nick") nick: String): Call<MutableList<UsersNoProblems>>
 
     @GET("problemas/base/?format=json")
     fun getProblemsData(): Call<MutableList<Problems>>

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -38,7 +39,26 @@ class UserRecyclerFragment : Fragment() {
         manager = LinearLayoutManager(context);
         initRecycler()
         getAllData()
+        binding.svUsers.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                getDataByName(query)
+                return false
+            }
 
+            override fun onQueryTextChange(newText: String): Boolean {
+
+                return false
+            }
+
+        })
+        binding.svUsers.setOnCloseListener(object : SearchView.OnCloseListener {
+            override fun onClose(): Boolean {
+                getAllData()
+                binding.recyclerViewUsers.requestFocus()
+                return true
+            }
+
+        })
         return binding.root
     }
 
@@ -97,6 +117,46 @@ class UserRecyclerFragment : Fragment() {
             })
         }
 
+    }
+
+    fun getDataByName(name: String) {
+
+        CoroutineScope(Dispatchers.IO).launch {
+            Api.retrofitService.getUsersByName(name)
+                .enqueue(object : Callback<MutableList<UsersNoProblems>> {
+                    override fun onResponse(
+                        call: Call<MutableList<UsersNoProblems>>,
+                        response: Response<MutableList<UsersNoProblems>>
+                    ) {
+
+                        if (response.isSuccessful) {
+                            users_list.clear()
+                            users_list.addAll(response.body()!!)
+                        }
+                    }
+
+                    override fun onFailure(call: Call<MutableList<UsersNoProblems>>, t: Throwable) {
+                        t.printStackTrace()
+                    }
+                })
+
+            Api.retrofitService.getProblemsData().enqueue(object : Callback<MutableList<Problems>> {
+                override fun onResponse(
+                    call: Call<MutableList<Problems>>,
+                    response: Response<MutableList<Problems>>
+                ) {
+                    if (response.isSuccessful) {
+                        problem_size.add(response.body()!!.size)
+                    }
+                }
+
+                override fun onFailure(call: Call<MutableList<Problems>>, t: Throwable) {
+                    t.printStackTrace()
+                }
+            })
+        }
+
+        myAdapter.notifyDataSetChanged()
     }
 
 
