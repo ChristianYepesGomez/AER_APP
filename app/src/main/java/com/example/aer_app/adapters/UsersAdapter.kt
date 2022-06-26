@@ -4,15 +4,24 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TableRow
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import app.futured.donut.DonutProgressView
 import app.futured.donut.DonutSection
+import com.example.aer_app.Api
 import com.example.aer_app.R
+import com.example.aer_app.models.Institutions
 import com.example.aer_app.models.Users
 import com.example.aer_app.models.UsersNoProblems
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class UsersAdapter(
     private val user_data: MutableList<UsersNoProblems>,
@@ -48,7 +57,29 @@ class UsersAdapter(
 
             } else {
 
-                institution.text = user.institution
+                CoroutineScope(Dispatchers.IO).launch {
+                    Api.retrofitService.getInstitutionData(user.institution)
+                        .enqueue(object : Callback<Institutions> {
+                            override fun onResponse(
+                                call: Call<Institutions>,
+                                response: Response<Institutions>
+                            ) {
+
+                                if (response.isSuccessful) {
+
+                                    institution.text = response.body()!!.name
+
+                                }
+                            }
+
+                            override fun onFailure(call: Call<Institutions>, t: Throwable) {
+                                t.printStackTrace()
+                            }
+
+
+                        })
+                }
+
 
             }
 
@@ -114,7 +145,8 @@ class UsersAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val v = LayoutInflater.from(parent.context).inflate(R.layout.list_item_user, parent, false)
+        val v =
+            LayoutInflater.from(parent.context).inflate(R.layout.list_item_user, parent, false)
         return MyViewHolder(v)
     }
 

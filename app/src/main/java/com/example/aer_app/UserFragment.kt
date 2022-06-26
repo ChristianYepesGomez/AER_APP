@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.core.view.marginLeft
 import androidx.recyclerview.widget.RecyclerView
 import com.example.aer_app.databinding.FragmentUserBinding
+import com.example.aer_app.models.Institutions
 import com.example.aer_app.models.Users
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.CoroutineScope
@@ -54,7 +55,32 @@ class UserFragment : Fragment() {
                         Picasso.get().load(user.logo_src).into(binding.imgUserFragment);
                         binding.nameUserFragment.text = user.name
                         binding.nickUserFragment.text = user.nick
-                        binding.institutionUserFragment.text = user.institution
+
+
+                        CoroutineScope(Dispatchers.IO).launch {
+                            Api.retrofitService.getInstitutionData(user.institution)
+                                .enqueue(object : Callback<Institutions> {
+                                    override fun onResponse(
+                                        call: Call<Institutions>,
+                                        response: Response<Institutions>
+                                    ) {
+
+                                        if (response.isSuccessful) {
+
+                                            binding.institutionUserFragment.text =
+                                                response.body()!!.name
+
+                                        }
+                                    }
+
+                                    override fun onFailure(call: Call<Institutions>, t: Throwable) {
+                                        t.printStackTrace()
+                                    }
+
+
+                                })
+                        }
+
                         binding.userTotalShipments.text =
                             "Envios totales: " + user.shipments.toString()
                         binding.userCompletedProblems.text =

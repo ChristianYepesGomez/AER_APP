@@ -36,8 +36,8 @@
 
         <TextView
             android:id="@+id/institution_user_fragment"
-            android:layout_width="wrap_content"
-            android:layout_height="30sp"
+            android:layout_width="146dp"
+            android:layout_height="28dp"
             android:layout_marginStart="30dp"
             android:layout_marginTop="10dp"
             android:text="1"
