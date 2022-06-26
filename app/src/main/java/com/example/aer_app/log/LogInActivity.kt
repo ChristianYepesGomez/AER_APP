@@ -39,7 +39,7 @@ class LogInActivity : AppCompatActivity() {
                         val intent = Intent(this, HomeActivity::class.java)
                         startActivity(intent)
                     } else {
-                        Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT)
+                        Toast.makeText(this, "Contraseña o usuario incorrectos", Toast.LENGTH_SHORT)
                             .show()
                     }
                 }
